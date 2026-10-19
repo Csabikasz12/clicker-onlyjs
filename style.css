@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(160deg, #1b1f3a, #0f1224);
+    color: white;
+    text-align: center;
+}
+
+h1 { font-size: 42px; margin: 10px 0; letter-spacing: 2px; }
+h2 { margin: 24px 0 12px; }
+
+
+#coin {
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 30px;
+    background: #2c2f55;
+    color: #ffd43b;
+    font-size: 28px;
+    border: 2px solid #ffd43b;
+}
+
+
+#kattint {
+    display: block;
+    margin: 20px auto;
+    padding: 30px 70px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #3b2a00;
+    background: linear-gradient(#ffe066, #fcc419);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 0 #c99700;
+    cursor: pointer;
+}
+#kattint:hover { filter: brightness(1.08); }
+#kattint:active { transform: translateY(6px); box-shadow: 0 2px 0 #c99700; }
+
+
+#bolt, #gyujtemeny {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.bolt {
+    width: 200px;
+    padding: 14px;
+    background: #23274a;
+    border: 2px solid #3a3f73;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.15s;
+}
+.bolt:hover { transform: translateY(-6px); }
+
+.bolt img { width: 100%; border-radius: 10px; display: block; }
+.bolt .nev { margin: 10px 0 8px; font-size: 18px; font-weight: bold; }
+
+.bolt button {
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background: #37b24d;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.bolt button:hover { background: #2f9e44; }
+.bolt button:disabled { background: #495057; color: #adb5bd; cursor: not-allowed; }
+
+.bolt.megvett { border-color: #ffd43b; }
+.bolt.megvett img { opacity: 0.6; }
+.bolt.megvett button { background: #ffd43b; color: #3b2a00; cursor: default; }
+
+
+#gyujtemeny img {
+    width: 200px;
+    border-radius: 12px;
+    border: 3px solid #ffd43b;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+#ures { color: #868e96; }

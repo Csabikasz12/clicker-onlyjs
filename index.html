@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clicker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <script>
         let coin = 0;
 
@@ -16,7 +16,94 @@
             { nev: "Leonidasz", kep: "kepek/duranda2.webp", ar: 1000 }
         ];
 
+        const cim = document.createElement("h1");
+        cim.textContent = "Clicker";
+        document.body.appendChild(cim);
 
+        const kiir = document.createElement("div");
+        kiir.id = "coin";
+        document.body.appendChild(kiir);
+
+        const gomb = document.createElement("button");
+        gomb.id = "kattint";
+        gomb.textContent = "Katt!";
+        gomb.onclick = function () {
+            coin++;
+            frissit();
+        };
+        document.body.appendChild(gomb);
+
+        const boltCim = document.createElement("h2");
+        boltCim.textContent = "Bolt";
+        document.body.appendChild(boltCim);
+
+        const bolt = document.createElement("div");
+        bolt.id = "bolt";
+        document.body.appendChild(bolt);
+
+        const gyujtemenyCim = document.createElement("h2");
+        gyujtemenyCim.textContent = "Gyűjteményed";
+        document.body.appendChild(gyujtemenyCim);
+
+        const gyujtemeny = document.createElement("div");
+        gyujtemeny.id = "gyujtemeny";
+        document.body.appendChild(gyujtemeny);
+
+        const ures = document.createElement("p");
+        ures.id = "ures";
+        ures.textContent = "Még nincs semmid, kattints és vásárolj!";
+        gyujtemeny.appendChild(ures);
+
+        const gombok = [];
+        for (let i = 0; i < termekek.length; i++) {
+            const doboz = document.createElement("div");
+            doboz.className = "bolt";
+
+            // előnézeti kép a boltban
+            const elonezet = document.createElement("img");
+            elonezet.src = termekek[i].kep;
+            elonezet.alt = "Nem található: " + termekek[i].kep;
+
+            const nev = document.createElement("div");
+            nev.className = "nev";
+            nev.textContent = termekek[i].nev;
+
+            const vesz = document.createElement("button");
+            vesz.textContent = "Vétel: " + termekek[i].ar + " coin";
+            vesz.onclick = function () {
+                if (coin >= termekek[i].ar) {
+                    coin -= termekek[i].ar;
+                    vesz.textContent = "Megvetted!";
+                    vesz.onclick = null;
+                    doboz.classList.add("megvett");
+
+                    const kep = document.createElement("img");
+                    kep.src = termekek[i].kep;
+                    kep.alt = "Nem található: " + termekek[i].kep;
+                    gyujtemeny.appendChild(kep);
+                    ures.style.display = "none";
+                    frissit();
+                }
+            };
+
+            doboz.appendChild(elonezet);
+            doboz.appendChild(nev);
+            doboz.appendChild(vesz);
+            bolt.appendChild(doboz);
+            gombok.push(vesz);
+        }
+
+        function frissit() {
+            kiir.textContent = "🪙 Coin: " + coin;
+            for (let i = 0; i < termekek.length; i++) {
+                // a már megvett gombnak nincs onclick-je, azt nem tiltjuk le
+                if (gombok[i].onclick !== null) {
+                    gombok[i].disabled = coin < termekek[i].ar;
+                }
+            }
+        }
+
+        frissit();
     </script>
 </body>
 </html>
