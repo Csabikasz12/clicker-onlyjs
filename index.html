@@ -59,7 +59,6 @@
             const doboz = document.createElement("div");
             doboz.className = "bolt";
 
-            // előnézeti kép a boltban
             const elonezet = document.createElement("img");
             elonezet.src = termekek[i].kep;
             elonezet.alt = "Nem található: " + termekek[i].kep;
@@ -96,7 +95,6 @@
         function frissit() {
             kiir.textContent = "🪙 Coin: " + coin;
             for (let i = 0; i < termekek.length; i++) {
-                // a már megvett gombnak nincs onclick-je, azt nem tiltjuk le
                 if (gombok[i].onclick !== null) {
                     gombok[i].disabled = coin < termekek[i].ar;
                 }
